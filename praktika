@@ -1,25 +1,50 @@
 #include <stdio.h>
-#define N 5
+
 int main()
 {
+    int N;
+    printf("кол-во строк/столбцов n = ");
+    scanf("%d", &N);
+    printf("\n");
     
-    float A[N][N] = { 1, 2, 0, 0, 0,
-                    0, 3,-4, 0, 0,
-                    0, 0, 6, 3, 0,
-                    0, 0, 0,-2, 4,
-                    0, 0, 0, 0, 3};
-                    
-    float b[N] = {2,3,4,-1,1};
+    float A[N][N];
+    printf("Матрица A\n");
+    for (int i = 0; i < N; i++)
+        for (int j = 0; j < N; j++)
+            scanf("%f", &A[i][j]);
     
-    for(int i = 0; i < N; i++)
+    
+    // проверка условий матрицы 
+    for (int i = 0; i < N; i++)
     {
-        for(int j = 0; j < N; j++)
+        for (int j = 0; j < N; j++)
         {
-            printf("%f\t",A[i][j]);
+            if (i == j && A[i][j] == 0)
+            {
+                printf("определитьель матрицы равен 0 (нет единственного решения)\n");
+                return 1;
+            }
+            if(i > j && A[i][j] != 0)
+            {
+                printf("неправильный ввод матрицы \n");
+                return 1;
+            }
+            if(j > i+1 && A[i][j] != 0)
+            {
+                printf("неправильный ввод матрицы \n");
+                return 1;
+            }
         }
-        
-        printf("|\t %f\n",b[i]);
-    }
+    }// проверка условий матрицы 
+    
+    
+    
+    float b[N];
+    printf("Веткор b\n");
+    for (int i = 0; i < N; i++)
+        scanf("%f", &b[i]);
+    
+
     
     float x[N];
     
@@ -37,3 +62,4 @@ int main()
 
     return 0;
 }
+
